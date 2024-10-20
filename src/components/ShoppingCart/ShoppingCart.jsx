@@ -19,7 +19,7 @@ return (
         <h2 className="text-center">{product.nombre}</h2>
         <div>
             <div>
-                <img className="items-center w-48" src={product.imagen} alt={product.nombre} />
+                <img className="items-center w-48" src={`/images-products/${product.imagen}`} alt={product.nombre} />
             </div>
             <div>
                 <div>

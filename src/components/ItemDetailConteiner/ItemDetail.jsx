@@ -19,7 +19,7 @@ const ItemDetail = ({product}) => {
         <div className="flex flex-col justify-center items-center content-center justify-items-center font-letraH1 rounded-lg bg-celesteArgentina p-1 shadow-2xl border-solid border-4 border-white text-xl mt-8 m-2 w-1/2">
             <div>
             <h1 className="text-center font-semibold">{product.nombre}</h1>
-            <img className="items-center w-96" src={product.imagen} alt={product.nombre} />
+            <img className="items-center w-96" src={`/images-products/${product.imagen}`} alt={product.nombre} />
             <div className="flex gap-2 justify-center items-center content-center justify-items-center">
             <Link to={"/"}>
             <button className="bg-amber-200 rounded-lg p-2 shadow-2xl border-2 border-amber-200 hover:border-solid hover:border-2 hover:border-yellow-500 hover:bg-white hover:underline hover:decoration-solid "><IoHome size="30px"/></button> 

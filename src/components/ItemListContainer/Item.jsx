@@ -23,7 +23,7 @@ const Item = ({ product }) => {
             <h2 className="p-2 text-center">{product.nombre}</h2>
             <p className="p-2 text-center">${product.precio}</p>
             <div className="flex justify-center">
-                <img className="w-48" src={product.imagen} alt={product.nombre} />
+                <img className="w-48" src={`/images-products/${product.imagen}`} alt={product.nombre} />
             </div>
             </Link>
             

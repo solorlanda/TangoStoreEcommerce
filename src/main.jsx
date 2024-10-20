@@ -1,16 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-
-// Import the functions you need from the SDKs you need
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Tu configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCxpGFeL9pEJUz_egslzkVfq3LhVEd9GGU",
   authDomain: "tango-ecommerce-30aa5.firebaseapp.com",
@@ -21,12 +15,17 @@ const firebaseConfig = {
   measurementId: "G-BTSTSTK2K1"
 };
 
-// Initialize Firebase
-initializeApp(firebaseConfig);
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig); // Inicializa la app de Firebase
 
+// Inicializa Firestore
+const db = getFirestore(app); // Obtén la instancia de Firestore usando la app inicializada
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// Exporta db para usar en otros componentes
+export { db };
+
+// Crear el root y renderizar la aplicación sin StrictMode
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <App db={db} />
+);

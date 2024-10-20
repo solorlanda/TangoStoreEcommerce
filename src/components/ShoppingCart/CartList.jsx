@@ -4,6 +4,9 @@ import ShoppingCart from "./ShoppingCart";
 import carritoVacio from "../../assets/carritoVacio.png";
 import DeleteCart from "./DeleteCart";
 import CartOrder from "./CartOrder";
+import { collection, addDoc } from "firebase/firestore"; // Importar Firestore
+import { db } from "../../main";  // Ajusta la ruta según la ubicación de tu archivo index.js
+
 
 function CartList() {
     const [cart, setCart] = useContext(CartContext);
@@ -39,15 +42,16 @@ function CartList() {
         return errors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const errors = validateForm();
         setFormErrors(errors);
-
+    
         if (Object.keys(errors).length === 0) {
             const orderInfo = {
                 nombre: formData.nombre,
                 apellido: formData.apellido,
+                email: formData.email, // Puedes agregar el email del comprador aquí también
                 products: cart.map(product => ({
                     id: product.id,
                     nombre: product.nombre,
@@ -57,12 +61,20 @@ function CartList() {
                 totalQuantity: quantity,
                 totalPrice: totalPrice,
                 date: new Date().toLocaleString(),
+                estado: 'generada'  // Estado de la orden
             };
-
-            setOrderDetails(orderInfo);
-
+    
+            try {
+                // Guardar la orden en Firestore
+                const docRef = await addDoc(collection(db, "orders"), orderInfo);
+                console.log("Orden registrada con ID: ", docRef.id);
+                setOrderDetails(orderInfo); // Guardar los detalles de la orden para mostrar en la pantalla
+            } catch (error) {
+                console.error("Error al agregar la orden: ", error);
+            }
+    
             setCart([]); 
-
+    
             setFormData({
                 nombre: "",
                 apellido: "",

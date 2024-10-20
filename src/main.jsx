@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 
 // Tu configuración de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyCxpGFeL9pEJUz_egslzkVfq3LhVEd9GGU",
+  apiKey: import.meta.env.VITE_BDAPIKEY,
   authDomain: "tango-ecommerce-30aa5.firebaseapp.com",
   projectId: "tango-ecommerce-30aa5",
   storageBucket: "tango-ecommerce-30aa5.appspot.com",

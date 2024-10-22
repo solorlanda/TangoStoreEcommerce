@@ -4,7 +4,7 @@ import './index.css';
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from "firebase/app";
 
-// Tu configuración de Firebase
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_BDAPIKEY,
   authDomain: "tango-ecommerce-30aa5.firebaseapp.com",
@@ -15,16 +15,16 @@ const firebaseConfig = {
   measurementId: "G-BTSTSTK2K1"
 };
 
-// Inicializa Firebase
-const app = initializeApp(firebaseConfig); // Inicializa la app de Firebase
 
-// Inicializa Firestore
-const db = getFirestore(app); // Obtén la instancia de Firestore usando la app inicializada
+const app = initializeApp(firebaseConfig); 
 
-// Exporta db para usar en otros componentes
+
+const db = getFirestore(app); 
+
+
 export { db };
 
-// Crear el root y renderizar la aplicación sin StrictMode
+
 const root = createRoot(document.getElementById('root'));
 root.render(
   <App db={db} />

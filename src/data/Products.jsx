@@ -1,15 +1,15 @@
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 const getProducts = async () => {
-    const db = getFirestore(); // Inicializa Firestore
-    const productsCollection = collection(db, "products"); // 'products' es tu colección en Firestore
-    const productsSnapshot = await getDocs(productsCollection); // Obtén los documentos
+    const db = getFirestore(); 
+    const productsCollection = collection(db, "products"); 
+    const productsSnapshot = await getDocs(productsCollection); 
     const productsList = productsSnapshot.docs.map(doc => ({
         id: doc.id,
-        ...doc.data(), // Extrae y combina el ID con los datos del documento
+        ...doc.data(), 
     }));
 
-    return productsList; // Asegúrate de devolver la lista de productos
+    return productsList; 
 };
 
 export default getProducts;
